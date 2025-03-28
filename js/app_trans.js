@@ -1,10 +1,11 @@
 $(document).ready(function() {
     let myChartAll, myChartLyric, myChartVocal, myChartInst;
-    $.getJSON('song_info/150_song_data.json', function(songData) {
+    $.getJSON('song_info/150_songs_data.json', function(songData) {
         const all_scatterData = createScatterData(songData, "all");
-        const lyric_scatterData = createScatterData(songData, "vocal")
-        const vocal_scatterData = createScatterData(songData, "inst")
-        const inst_scatterData = createScatterData(songData, "lyrics")
+        const lyric_scatterData = createScatterData(songData, "lyrics")
+        const vocal_scatterData = createScatterData(songData, "vocal")
+        const inst_scatterData = createScatterData(songData, "inst")
+        // console.log(lyric_scatterData)
 
         myChartAll = renderScatterPlot("all-scatter", Object.values(all_scatterData));
         myChartLyric = renderScatterPlot("lyric-scatter", Object.values(lyric_scatterData));
@@ -13,8 +14,10 @@ $(document).ready(function() {
         // console.log(findNearestSongs("sm15630734", all_scatterData))
 
         // // プレイリストを描画
-        renderPlaylist(findNearestSongs("sm30978393", inst_scatterData), inst_scatterData);
-        
+        renderPlaylist(findNearestSongs("sm30746418", inst_scatterData), inst_scatterData);
+        // renderPlaylist(findNearestSongs("sm30746418", all_scatterData), all_scatterData);
+        // renderPlaylist(findNearestSongs("sm30746418", lyric_scatterData), lyric_scatterData);
+        // renderPlaylist(findNearestSongs("sm30746418", vocal_scatterData), vocal_scatterData);
         // // クリックイベントの設定
         setupClickEventForPlaylist();
     });
