@@ -27,23 +27,50 @@ body {
     min-height:720px;
 }
 
-#header {
-    position:absolute;
-    width:220px;
-    height:50px;
-    top:0px;
-    left:0px;
-    background:rgba(246, 234, 234, 1);
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 115px; /* 必要に応じて調整 */
 }
 
-#header-text {
-    font-size:16pt;
-    font-weight:bold;
-    user-select:none;
+.custom-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 40px 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.type-icon {
     position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #333;
+    font-size: 30px;
+}
+
+.custom-select-wrapper select:hover,
+.custom-select-wrapper select:focus {
+    border-color: rgba(0, 0, 0);
+}
+
+input[type="range"] {
+    position:absolute;
+    width: calc(100% - 140px);
+    bottom: 10px;
+    left: 65px;
 }
 
 #right_panel {
@@ -63,68 +90,131 @@ body {
     background: white;
 }
 
-#area_text{
-    width: 20%;
+#tolerance{
+    position:absolute;
+    width:100%;
+    height:30%;
+    top: 20px;
+    left: 0%;
+    background:white;
+}
+
+#tolerance_level_text{
+    position:absolute;
+    width: calc(100% - 10px);
+    height: calc(0% + 30px);
+    font-size: 16pt;
+    left: 5px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom:2px solid black;
+}
+
+#tolerance_vocal{
+    position:absolute;
+    width:calc(100% - 10px);
+    height:25%;
+    top: 45px;
+    left: 5px;
+    background:rgba(0, 0, 0, 0.1);
+}
+
+.low-text{
+    position:absolute;
+    left: 0%;
+    padding-left: 0.5em;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: left;
+    bottom: 8px;
+    color: rgba(0, 0, 255, 1);
+}
+
+.high-text{
+    position:absolute;
+    right: 0%;
+    padding-right: 0.5em;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: right;
+    bottom: 8px;
+    color: rgba(255, 0, 0, 1);
+}
+
+#tolerance_inst{
+    position:absolute;
+    width:calc(100% - 10px);
+    height:25%;
+    top: calc(55px + 25%);
+    left: 5px;
+    background:rgba(0, 0, 0, 0.1);
+}
+
+#tolerance_lyric{
+    position:absolute;
+    width:calc(100% - 10px);
+    height:25%;
+    top: calc(65px + 50%);
+    left: 5px;
+    background:rgba(0, 0, 0, 0.1);
+}
+
+.tolerance_type_text{
+    position:absolute;
+    padding-left: 0.5em;
+    width: calc(100% - 10px);
     height: calc(0% + 30px);
     font-size: 14pt;
     font-weight: bold;
+    text-align: left;
+}
+
+#all_text{
+    width: 50px;
+    height: calc(0% + 30px);
+    font-size: 16pt;
+    font-weight: bold;
     text-align: center;
-    border:1.5px solid black;
+    border-bottom:2px solid black;
 }
 
 #all_area{
     position:absolute;
     width:calc(50% - 5px);
     height:calc(50% - 10px);
-    top: 10px;
-    left: 5px;
-    background:rgba(0, 0, 0, 0.1);
+    top: 20px;
+    left: 0px;
+    background:white;
 }
 
 .map{
     position:absolute;
     width:100%;
-    height:calc(100% - 30px);
-    bottom: 0px;
-}
-
-#lyric_area{
-    position:absolute;
-    width:calc(50% - 10px);
-    height:calc(50% - 10px);
-    top: 10px;
+    height:100%;
     right: 0px;
-    background:rgba(0, 0, 0, 0.1);
+    top: 40px;
 }
 
-#vocal_area{
+#other_area{
     position:absolute;
     width:calc(50% - 5px);
     height:calc(50% - 10px);
-    bottom: 0px;
-    left: 5px;
-    background:rgba(0, 0, 0, 0.1);
-}
-
-#inst_area{
-    position:absolute;
-    width:calc(50% - 10px);
-    height:calc(50% - 10px);
-    bottom: 0px;
+    top: 10px;
     right: 0px;
-    background:rgba(0, 0, 0, 0.1);
+    background:white;
 }
 
 canvas {
     width: 100%;
     height: 100%;
+    background:rgba(0, 0, 0, 0.1);
 }
 
 #player {
     position:absolute;
-    width:100%;
-    height: calc(40% - 5px);
-    top: 56%;
+    width:calc(50% - 5px);
+    height: calc(50% - 50px);
+    bottom: 0px;
     left: 0px;
     background:white;
 }
@@ -132,7 +222,7 @@ canvas {
 .layer-button {
     position:absolute;
     width: 50px;
-    height: 50px;
+    height: 38px;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -147,41 +237,57 @@ canvas {
     background:yellow;
 }
 
-#max-5 {
-    top: calc(0% + 7px);
-    left: 0px;
-}
-
-#max-10 {
-    top: calc(0% + 7px);
-    left: 50px;
-}
-
-#max-25 {
-    top: calc(0% + 7px);
-    left: 100px;
-}
-
-#max-50 {
-    top: calc(0% + 7px);
-    left: 150px;
+.select-layer{
     background:yellow;
+    border-bottom: 3px solid black;
+}
+
+#ALL-layer {
+    top: 0px;
+    right: 159px;
+}
+
+#VOCAL-layer {
+    top: 0px;
+    right: 106px;
+}
+
+#INST-layer {
+    top: 0px;
+    right: 53px;
+}
+
+#LYRIC-layer {
+    top: 0px;
+    right: 0px;
 }
 
 #song-select {
     position:absolute;
     width:100%;
-    height:100%;
-    top: 0px;
+    height:calc(70% - 45px);
+    bottom: 0%;
     left: 0px;
     background:white;
+}
+
+#recommend-text{
+    position:absolute;
+    width: auto;
+    height: calc(0% + 30px);
+    font-size: 16pt;
+    left: 5px;
+    /* padding-left: 0.5em; */
+    font-weight: bold;
+    text-align: left;
+    border-bottom:2px solid black;
 }
 
 #recommend {
     position:absolute;
     width:100%;
-    height:50%;
-    top: 60px;
+    height:calc(100% - 42px);
+    top: 40px;
     left: 0px;
     background:white;
     overflow-y:auto;
@@ -230,87 +336,89 @@ canvas {
     color:rgba(73,211,85,0.88);
 }
 
-.check-button {
-    position: absolute;
-    width: 45px;
-    height: 45px;
-    right: 25px;
-    border-radius: 50%;
-    border: none;
-    background-color: transparent;
-} 
-
-#move-map {
+#evaluation {
     position:absolute;
-    width: 250px;
-    height: 60px;
-    bottom: 10px;
-    left: calc(50% - 125px);
-    font-size:20pt;
-    font-weight:bold;
+    width:calc(50% - 5px);
+    height: calc(50% - 45px);
+    bottom: 0px;
+    right: 0px;
     background:white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border:1px solid black;
-    cursor:pointer;
-    user-select:none;
 }
 
-#prefer-select {
+#evaluation_text{
     position:absolute;
-    width: 550px;
-    height: 130px;
-    bottom: 10px;
-    left: calc(50% - 275px);
-    background:rgba(217,217,217,1);
-    border-radius:10px;
+    width: 150px;
+    height: calc(0% + 30px);
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+    border-bottom:2px solid black;
+    top: 0px;
+    left: 0px;
+}
+
+#evaluation-area {
+    position:relative;
+    width:100%;
+    height: calc(100% - 30px);
+    top: 30px;
+    background:white;
+    /* border-radius:10px; */
+}
+
+.select-icon{
+    position: relative;
+    color: black;
+    pointer-events: none;
+    font-size: 70px;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.evaluation-type{
+    width: 100%;
+    height: 23%;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items:center;
     justify-content: space-evenly;
+    background:rgba(217,217,217,1);
+    border-radius: 8px;
 }
 
-.text-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.label {
-    display: block;
-    font-size:16pt;
-    user-select:none;
-    font-weight:bold;
-    margin-bottom: 10px;
+.evaluation-type-text{
+    position:relative;
+    font-size: 17pt;
+    top: 5.5px;
+    left: 10px;
+    font-weight: bold;
+    margin-bottom: 3px;
 }
 
 .rating-button {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    /* padding: 10px; */
     border: none;
-    cursor:pointer;
+    cursor: pointer;
+    /* background-color: rgba(0, 0, 0, 1); */
 }
 
-.dislike {
-    background-color: rgba(0, 0, 255, 1);
+.select-icon.very-dissatisfied.active {
+    color: rgba(0, 0, 255, 1);
 }
-
-.slightly-dislike {
-    background-color: rgba(31, 174, 235, 0.82);
+.select-icon.dissatisfied.active {
+    color: rgba(31, 174, 235, 0.82);
 }
-
-.neutral {
-    background-color:  rgba(73,211,85,0.88);
-    /* background-color:rgba(233, 237, 17, 1) */
+.select-icon.neutral.active {
+    color: rgba(73,211,85,0.88);
 }
-
-.slightly-like {
-    background-color: rgba(235, 109, 31, 0.82);
+.select-icon.satisfied.active {
+    color: rgba(235, 109, 31, 0.82);
 }
-
-.like {
-    background-color: rgba(255, 0, 0, 1);
+.select-icon.very-satisfied.active {
+    color: rgba(255, 0, 0, 1);
 }
