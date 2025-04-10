@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>DEMO INTERFACE</title>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+        <link href="css/app.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    </head>
+    <body>
+        <div id="right_panel">
+            <div id="all_area">
+                <div id="all_text">ALL</div>
+                <canvas id="all-scatter"></canvas>
+            </div>
+
+            <div id="other_area">
+                <div class="custom-select-wrapper">
+                    <select id="mapSelect">
+                    <option value="vocal" selected>VOCAL</option>
+                    <option value="inst">INST</option>
+                    <option value="lyric">LYRIC</option>
+                    </select>
+                    <span class="material-icons type-icon">arrow_drop_down</span>
+                </div>
+                <div id="lyric-map" class="map">
+                    <canvas id = "lyric-scatter"></canvas>
+                </div>
+                <div id="vocal-map" class="map">
+                    <canvas id = "vocal-scatter"></canvas>
+                </div>
+                <div id="inst-map" class="map">
+                    <canvas id = "inst-scatter"></canvas>
+                </div>      
+            </div>
+        <div id="player"></div>
+
+        <div id="evaluation">
+            <div id="evaluation_text">EVALUATION</div>
+            <div id="evaluation-area">
+                <div class="evaluation-type-text">VOCAL</div>
+                <div class="evaluation-type vocal-evaluation">
+                    <div class="rating-button">
+                        <i class="material-icons select-icon very-dissatisfied">sentiment_very_dissatisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon dissatisfied">sentiment_dissatisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon neutral">sentiment_neutral</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon satisfied">sentiment_satisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon very-satisfied">sentiment_very_satisfied</i>
+                    </div>
+                </div>
+
+                <div class="evaluation-type-text">INST</div>
+                <div class="evaluation-type inst-evaluation">
+                    <div class="rating-button">
+                        <i class="material-icons select-icon very-dissatisfied">sentiment_very_dissatisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon dissatisfied">sentiment_dissatisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon neutral">sentiment_neutral</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon satisfied">sentiment_satisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon very-satisfied">sentiment_very_satisfied</i>
+                    </div>
+                </div>
+
+                <div class="evaluation-type-text">LYRIC</div>
+                <div class="evaluation-type lyric-evaluation">
+                    <div class="rating-button">
+                        <i class="material-icons select-icon very-dissatisfied">sentiment_very_dissatisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon dissatisfied">sentiment_dissatisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon neutral">sentiment_neutral</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon satisfied">sentiment_satisfied</i>
+                    </div>
+                    <div class="rating-button">
+                        <i class="material-icons select-icon very-satisfied">sentiment_very_satisfied</i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        </div>
+        
+        <div id="left_panel">
+            <div id="tolerance">
+                <div id="tolerance_level_text">TOLERANCE LEVEL</div>
+                <div id="tolerance_vocal">
+                    <div class="tolerance_type_text">
+                        VOCAL : <span id="value1" class="value">100</span> %
+                    </div>
+                    <div class="low-text">LOW</div>
+                    <input type="range" id="slider1" min="0" max="100" step="5" value="100">
+                    <div class="high-text">HIGH</div>
+                </div>
+                <div id="tolerance_inst">
+                    <div class="tolerance_type_text">
+                        INST : <span id="value2" class="value">100</span> %
+                    </div>
+                    <div class="low-text">LOW</div>
+                    <input type="range" id="slider2" min="0" max="100" step="5" value="100">
+                    <div class="high-text">HIGH</div>
+                </div>
+                <div id="tolerance_lyric">
+                    <div class="tolerance_type_text">
+                        LYRIC : <span id="value3" class="value">0</span> %
+                    </div>
+                    <div class="low-text">LOW</div>
+                    <input type="range" id="slider3" min="0" max="100" step="5" value="0">
+                    <div class="high-text">HIGH</div>
+                </div>
+            </div>
+            <div id="song-select">
+                <div id="recommend-text">RECOMMEND</div>
+                <div class="layer-button select-layer" id="ALL-layer">ALL</div>
+                <div class="layer-button" id="VOCAL-layer">VOCAL</div>
+                <div class="layer-button" id="INST-layer">INST</div>
+                <div class="layer-button" id="LYRIC-layer">LYRIC</div>
+                <div id="recommend">
+                    <div id="rec-content"></div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="js/app_011.js"></script>
+    </body>
+</html>
